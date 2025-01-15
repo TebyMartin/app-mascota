@@ -1,10 +1,10 @@
-#Gestión Veterinaria 🐶 🐈
+# Gestión Veterinaria 🐶 🐈
 ---
 La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la lógica básica de CRUD para cada una sola entidad y un filtro por cliente para las mascotas.
 
 <hr style="border: 3px solid #000;">
 
-##Características
+## Características
 ---
 1. Registro e inicio de sesión con autenticación JWT
 2. CRUD de mascotas: crear, consultar actualizar y eliminar informacion de alguna mascota. También filtra mascotas por cliente
@@ -14,7 +14,7 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 
 <hr style="border: 3px solid #000;">
 
-##Tecnologias 
+## Tecnologias 
 ---
 1. Express.js
 2. Node.js
@@ -23,7 +23,7 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 
 <hr style="border: 3px solid #000;">=
 
-##Pasos para usar este proyecto 
+# Pasos para usar este proyecto 
 
 1. Clonar el repositorio
 
@@ -36,9 +36,9 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 
 <hr style="border: 3px solid #000;">
 
-##Estructrua del proyecto 
----
+## Estructura del Proyecto
 
+```plaintext
 APP-MASCOTA/
 ├── config/         # Configuración de la aplicación
 │   ├── (archivos de configuración, como la conexión a la base de datos)
@@ -58,9 +58,11 @@ APP-MASCOTA/
 └── README.md       # Documentación del proyecto
 
 
+
 <hr style="border: 3px solid #000;">
 
-##Endpoints principales 
+
+## Endpoints principales 
 ---
 Usuario:
 ---
@@ -149,8 +151,10 @@ Query Parameters
 parameter: cliente  value:677f0ebf34a8f9e6be51e548
 
 <hr style="border: 3px solid #000;">
+ 
 
-##Creditos
+ 
+## Creditos
 ---
 
 Desarrollado por Esteban Martin 
