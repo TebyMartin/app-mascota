@@ -1,10 +1,10 @@
-Gestión Veterinaria 🐶 🐈
+#Gestión Veterinaria 🐶 🐈
 ---
 La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la lógica básica de CRUD para cada una sola entidad y un filtro por cliente para las mascotas.
 
-===
+==========
 
-Características
+##Características
 ---
 1. Registro e inicio de sesión con autenticación JWT
 2. CRUD de mascotas: crear, consultar actualizar y eliminar informacion de alguna mascota. También filtra mascotas por cliente
@@ -12,18 +12,19 @@ Características
 4. Se integró Passport.js  para gestionar la autenticación de manera eficaz, Al ser un middleware autenticación de Node.js extremadamente flexible,  permitió la implementación de estrategias de autenticación personalizadas.
 5. El enfoque combinado de Node.js y Express, bcrypt, JWT y Passport permitió construir una API potente y segura.
 
-===
+===========
 
-Tecnologias 
+##Tecnologias 
 ---
 1. Express.js
 2. Node.js
 3. MongoDB: Base de datos no relacional, local o en la nube.
 4. Dependencias: bcrypt, JWT, Passport, 
 
-===
+===========
 
-Pasos para usar este proyecto 
+##Pasos para usar este proyecto 
+
 1. Clonar el repositorio
 
 2. Instalar las dependencias ```npm install```
@@ -33,9 +34,9 @@ Pasos para usar este proyecto
 6. Iniciar sesión
 7. Usar el token del inicio de sesión para probar los diferentes endpoints
 
-===
+=============
 
-Estructrua del proyecto 
+##Estructrua del proyecto 
 ---
 
 APP-MASCOTA/
@@ -56,9 +57,9 @@ APP-MASCOTA/
 ├── package-lock.json  # Bloqueo de dependencias para mantener consistencia
 └── README.md       # Documentación del proyecto
 
-===
+===========
 
-Endpoints principales 
+##Endpoints principales 
 ---
 Usuario:
 ---
@@ -68,7 +69,7 @@ Usuario:
 | POST     | /registro    | Realizar un registro                |
 | POST     | /login       | Iniciar sesión                      |
 
-===
+==============
 
 Ejemplo de uso 
 ---
@@ -100,7 +101,8 @@ Cliente:
 | PUT      | /cliente/:id | Actualiza los datos de un cliente.  |
 | DELETE   | /cliente/:id | Elimina un cliente por su ID.       |
 
-===
+==============
+
 Ejemplo de uso 
 ---
 
@@ -125,7 +127,7 @@ Mascota:
 | PUT      | /mascota/:id | Actualiza los datos de un mascota.  |
 | DELETE   | /mascota/:id | Elimina un mascota por su ID.       |
 
-===
+============
 
 Ejemplo de uso 
 ---
@@ -145,9 +147,9 @@ Query Parameters
 ---
 parameter: cliente  value:677f0ebf34a8f9e6be51e548
 
-===
+=============
 
-Creditos
+##Creditos
 ---
 
 Desarrollado por Esteban Martin 
