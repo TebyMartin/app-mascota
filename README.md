@@ -55,7 +55,8 @@ APP-MASCOTA/
 ├── app.js          # Punto de entrada principal de la aplicación
 ├── package.json    # Configuración del proyecto y dependencias
 ├── package-lock.json  # Bloqueo de dependencias para mantener consistencia
-└── README.md       # Documentación del proyecto
+└── README.md       # Documentación del proyecto 
+```
 
 
 
@@ -69,8 +70,8 @@ Usuario:
 
 | Método   | Endpoints    | Descripción                         |
 |----------|--------------|-------------------------------------|
-| POST     | /registro    | Realizar un registro                |
-| POST     | /login       | Iniciar sesión                      |
+| POST     | `/registro`  | Realizar un registro                |
+| POST     | `/login`     | Iniciar sesión                      |
 
 <hr style="border: 3px solid #000;">====
 
@@ -80,29 +81,33 @@ Ejemplo de uso
 Registro: 
 ---
 
+```json
 {
   "username":"nicolas",
   "email":"sogtelo@gmail.com",
   "password":"123456789"
 }
-
+```
 
 Login:
 ---
+
+```json
 {
   "username":"nicolas",
   "password":"123456789"
 }
+```
 
 Cliente:
 ---
 | Método   | Endpoints    | Descripción                         |
 |----------|--------------|-------------------------------------|
-| GET      | /cliente     | Obtiene todos los clientes.         |
-| GET      | /cliente/:id | Obtiene un cliente por su ID.       |
-| POST     | /cliente     | Crea un nuevo cliente.              |
-| PUT      | /cliente/:id | Actualiza los datos de un cliente.  |
-| DELETE   | /cliente/:id | Elimina un cliente por su ID.       |
+| GET      | `/cliente`   | Obtiene todos los clientes.         |
+| GET      | `/cliente/:id`| Obtiene un cliente por su ID.       |
+| POST     | `/cliente`    | Crea un nuevo cliente.              |
+| PUT      | `/cliente/:id`| Actualiza los datos de un cliente.  |
+| DELETE   | `/cliente/:id`| Elimina un cliente por su ID.       |
 
 <hr style="border: 3px solid #000;">
 
@@ -111,24 +116,27 @@ Ejemplo de uso
 
 Crear un Cliente
 ---
+
+```json
 {
   "nombre": "Marcoos",
   "telefono":"652828",
   "email": "marcos@gmail.com"
   
 }
+```
 
 
 Mascota:
 ---
 
-| Método   | Endpoints    | Descripción                         |
-|----------|--------------|-------------------------------------|
-| GET      | /mascota     | Obtiene todos los mascotas.         |
-| GET      | /mascota/busqueda| Filtra mascotas por cliente.          |
-| POST     | /mascota     | Crea un nuevo mascota.              |
-| PUT      | /mascota/:id | Actualiza los datos de un mascota.  |
-| DELETE   | /mascota/:id | Elimina un mascota por su ID.       |
+| Método   | Endpoints      | Descripción                         |
+|----------|----------------|-------------------------------------|
+| GET      | `/mascota`     | Obtiene todos los mascotas.         |
+| GET      | `/mascota/busqueda`| Filtra mascotas por cliente.          |
+| POST     | `/mascota`     | Crea un nuevo mascota.              |
+| PUT      | `/mascota/:id` | Actualiza los datos de un mascota.  |
+| DELETE   | `/mascota/:id` | Elimina un mascota por su ID.       |
 
 <hr style="border: 3px solid #000;">
 
@@ -137,12 +145,15 @@ Ejemplo de uso
 
 Crear una mascota: 
 ---
+
+```json
 {
   "nombre": "Penelope",
   "especie":"gato",
   "sintomas": "no no duerme",
   "cliente":"677f0ebf34a8f9e6be51e548"
 }
+```
 
 Filtrar por cliente: 
 ---
@@ -153,7 +164,7 @@ parameter: cliente  value:677f0ebf34a8f9e6be51e548
 <hr style="border: 3px solid #000;">
  
 
- 
+
 ## Creditos
 ---
 
