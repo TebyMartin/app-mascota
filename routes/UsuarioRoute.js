@@ -1,7 +1,7 @@
 
 
 import express from 'express'
-import ModelUsuario from '../model/Usario.js'
+import ModelUsuario from '../model/Usuario.js'
 import generarJWT from "../helpers/generarJWT.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'

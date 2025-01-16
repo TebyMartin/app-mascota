@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy, ExtractJwt } from "passport-jwt";
-import ModelUsuario from "../model/Usario.js"; // Asegúrate de tener el modelo de usuario de Mongoose importado
+import ModelUsuario from "../model/Usuario.js"; // Asegúrate de tener el modelo de usuario de Mongoose importado
 
 export function authConfig() {
   const jwtOptions = {

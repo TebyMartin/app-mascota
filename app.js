@@ -5,26 +5,26 @@ import MascostaRouter from './routes/MascotaRoute.js';
 import UsuarioRouter from './routes/UsuarioRoute.js';
 import dotenv from 'dotenv';
 import { authConfig } from './middleware/passportConfig.js';
+import cors from "cors"
 
-const app = express();
+
 dotenv.config();
+const app = express();
+app.use(cors())
+
  app.use(express.json());
  // Ruta de prueba
- app.get('/', (req, res) => {
- res.send('El servidor está funcionando correctamente');
- });
+
 authConfig()
-app.use(Clienterouter)
-app.use(MascostaRouter)
-app.use(UsuarioRouter)
+app.use("/api",Clienterouter)
+app.use("/api",MascostaRouter)
+app.use("/api",UsuarioRouter)
 
  dbconnect().then(() => {
-    app.listen(3000, () => {
-    console.log('El servidor está corriendo en el puerto 3000');
-    });
+    console.log('El servidor está corriendo ');
     }).catch(err => {
     console.error('No se pudo iniciar el servidor debido a un error en la base de datos');
     })
 
    
-   
+export default app
