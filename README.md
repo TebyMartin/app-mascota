@@ -25,14 +25,14 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 
 # Pasos para usar este proyecto 
 
-1. Clonar el repositorio ```bash https://github.com/TebyMartin/app-mascota.git ```
+1. Clonar el repositorio ``` https://github.com/TebyMartin/app-mascota.git ```
 
 2. Instalar las dependencias ```npm install```
-3. Ejecutar el servidor ```bash npm run dev```. 
+3. Ejecutar el servidor ``` npm run dev```. 
 4. Crearse un usuario (descripción mas adelante)
 5. Iniciar sesión
 6. Usar el token del inicio de sesión para probar los diferentes endpoints
-7. Tambien puede usarse el link desplegado en Vercel para probar los endpoints ```bash https://app-mascota.vercel.app/```
+7. Tambien puede usarse el link desplegado en Vercel para probar los endpoints https://app-mascota.vercel.app/
 
 <hr style="border: 3px solid #000;">
 
