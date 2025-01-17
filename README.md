@@ -2,7 +2,7 @@
 ---
 La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la lógica básica de CRUD para cada una sola entidad y un filtro por cliente para las mascotas.
 
-<hr style="border: 3px solid #000;">
+
 
 ## Características
 ---
@@ -12,7 +12,7 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 4. Se integró Passport.js  para gestionar la autenticación de manera eficaz, Al ser un middleware autenticación de Node.js extremadamente flexible,  permitió la implementación de estrategias de autenticación personalizadas.
 5. El enfoque combinado de Node.js y Express, bcrypt, JWT y Passport permitió construir una API potente y segura.
 
-<hr style="border: 3px solid #000;">
+
 
 ## Tecnologias 
 ---
@@ -21,7 +21,7 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 3. MongoDB: Base de datos no relacional, local o en la nube.
 4. Dependencias: bcrypt, JWT, Passport, 
 
-<hr style="border: 3px solid #000;">=
+=
 
 # Pasos para usar este proyecto 
 
@@ -34,7 +34,7 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 6. Usar el token del inicio de sesión para probar los diferentes endpoints
 7. Tambien puede usarse el link desplegado en Vercel para probar los endpoints https://app-mascota.vercel.app/
 
-<hr style="border: 3px solid #000;">
+
 
 ## Estructura del Proyecto
 
@@ -60,7 +60,7 @@ APP-MASCOTA/
 
 
 
-<hr style="border: 3px solid #000;">
+
 
 
 ## Endpoints principales 
@@ -73,7 +73,7 @@ Usuario:
 | POST     | `/registro`  | Realizar un registro                |
 | POST     | `/login`     | Iniciar sesión                      |
 
-<hr style="border: 3px solid #000;">====
+====
 
 Ejemplo de uso 
 ---
@@ -109,7 +109,7 @@ Cliente:
 | PUT      | `/cliente/:id`| Actualiza los datos de un cliente.  |
 | DELETE   | `/cliente/:id`| Elimina un cliente por su ID.       |
 
-<hr style="border: 3px solid #000;">
+
 
 Ejemplo de uso 
 ---
@@ -138,7 +138,7 @@ Mascota:
 | PUT      | `/mascota/:id` | Actualiza los datos de un mascota.  |
 | DELETE   | `/mascota/:id` | Elimina un mascota por su ID.       |
 
-<hr style="border: 3px solid #000;">
+
 
 Ejemplo de uso 
 ---
@@ -161,13 +161,13 @@ Query Parameters
 ---
 parameter: cliente  value:677f0ebf34a8f9e6be51e548
 
-<hr style="border: 3px solid #000;">
+
  
-## Desoligue en Vercel 
+## Despliegue en Vercel 
 ---
 Ya está disponible en VERCEL 👉 https://app-mascota.vercel.app/
 
-<hr style="border: 3px solid #000;">
+
 
 ## Creditos
 ---
