@@ -25,14 +25,14 @@ La API permitirá gestionar clientes y sus respectivas mascotas, aplicando la l�
 
 # Pasos para usar este proyecto 
 
-1. Clonar el repositorio
+1. Clonar el repositorio ```bash https://github.com/TebyMartin/app-mascota.git ```
 
 2. Instalar las dependencias ```npm install```
-3. Configuración de la base de datos, asegurarse de tener MongoDB corriendo localmente o en la nube. La base de datos predeterminada se conectara a ```mongodb://localhost:27017/dbGestorMascotas```.
-4. Ejecutar el servidor ```npm run dev```. El servidor estara disponible en ```http://localhost:3000```
-5. Crearse un usuario (descripción mas adelante)
-6. Iniciar sesión
-7. Usar el token del inicio de sesión para probar los diferentes endpoints
+3. Ejecutar el servidor ```bash npm run dev```. 
+4. Crearse un usuario (descripción mas adelante)
+5. Iniciar sesión
+6. Usar el token del inicio de sesión para probar los diferentes endpoints
+7. Tambien puede usarse el link desplegado en Vercel para probar los endpoints ```bash https://app-mascota.vercel.app/```
 
 <hr style="border: 3px solid #000;">
 
@@ -163,12 +163,16 @@ parameter: cliente  value:677f0ebf34a8f9e6be51e548
 
 <hr style="border: 3px solid #000;">
  
+## Desoligue en Vercel 
+---
+Ya está disponible en VERCEL 👉 https://app-mascota.vercel.app/
 
+<hr style="border: 3px solid #000;">
 
 ## Creditos
 ---
 
-Desarrollado por Esteban Martin 
+Desarrollado por [Esteban Martin]
 
 
 
