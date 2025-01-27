@@ -40,8 +40,8 @@ UsuarioRouter.post('/registro', async (req, res) => {
 });
 
 UsuarioRouter.get('/perfil', passport.authenticate("jwt", { session: false }), async (req, res) => {
-  // El usuario autenticado se encuentra en req.user
-  res.json(req.user); // Devuelve el usuario autenticado
+
+  res.json(req.user)
 });
 
 UsuarioRouter.post("/login", async (req, res) => { 
