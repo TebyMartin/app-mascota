@@ -5,6 +5,7 @@ import ModelUsuario from '../model/Usuario.js'
 import generarJWT from "../helpers/generarJWT.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import passport from 'passport';
 
 
 
@@ -38,9 +39,9 @@ UsuarioRouter.post('/registro', async (req, res) => {
     }
 });
 
-UsuarioRouter.get('/perfil',passport.authenticate("jwt", { session: false }), async (req, res) => {
-    const { ModelUsuario } = req;
-    res.json(ModelUsuario);
+UsuarioRouter.get('/perfil', passport.authenticate("jwt", { session: false }), async (req, res) => {
+  // El usuario autenticado se encuentra en req.user
+  res.json(req.user); // Devuelve el usuario autenticado
 });
 
 UsuarioRouter.post("/login", async (req, res) => { 
