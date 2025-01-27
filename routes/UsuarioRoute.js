@@ -38,6 +38,10 @@ UsuarioRouter.post('/registro', async (req, res) => {
     }
 });
 
+UsuarioRouter.get('/perfil',passport.authenticate("jwt", { session: false }), async (req, res) => {
+    const { ModelUsuario } = req;
+    res.json(ModelUsuario);
+});
 
 UsuarioRouter.post("/login", async (req, res) => { 
       const { username, password } = req.body;
