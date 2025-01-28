@@ -13,7 +13,7 @@ const UsuarioRouter = express.Router()
 
 
 UsuarioRouter.post('/registro', async (req, res) => {
-  const { email, username, password } = req.body;
+  const { email, username } = req.body;
   
   if (!username) {
       return res.status(400).json({ msg: 'El username es obligatorio' });
@@ -26,11 +26,11 @@ UsuarioRouter.post('/registro', async (req, res) => {
 
   try {
       const usuario = new ModelUsuario(req.body);
-      // Encriptamos la contraseña
+  
      
       const usuarioguardado = await usuario.save();
 
-      // Generamos el token JWT
+
       const token = generarJWT(usuarioguardado._id);
 
       res.json({
