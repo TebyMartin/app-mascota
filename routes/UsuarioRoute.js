@@ -48,38 +48,30 @@ UsuarioRouter.get('/perfil', passport.authenticate("jwt", { session: false }), a
 
   res.json(req.user)
 });
-// Ruta para login
-UsuarioRouter.post("/login", async (req, res) => {
-  const { username, password } = req.body;
 
-  try {
-    const user = await ModelUsuario.findOne({ username });
-    if (!user) {
-      return res.status(400).send({ error: "Username o contraseña inválida" });
+UsuarioRouter.post("/login", async (req, res) => { 
+      const { username, password } = req.body;
+  
+      try {
+        const user = await ModelUsuario.findOne({ username });
+        if (!user) {
+          return res.status(400).send({ error: "Username o contraseña inválida" });
+        }
+        const passwordCompared = await bcrypt.compare(password, user.password);
+        if (!passwordCompared) {
+          return res.status(400).send({ error: "Username o contraseña inválida" });
+        }
+        const payload = { username: user.username, email: user.email }; // Incluyendo el email en el payload
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+          expiresIn: "2h",
+        });
+        return res.send({ username: user.username, email: user.email, token });
+      } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error del servidor" });
+      }
     }
-
-    const passwordCompared = await bcrypt.compare(password, user.password);
-    if (!passwordCompared) {
-      return res.status(400).send({ error: "Username o contraseña inválida" });
-    }
-
-    // Crear un nuevo token
-    const payload = { username: user.username, email: user.email };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "2h",
-    });
-
-   
-    user.token = token;
-    await user.save();
-
-    return res.send({ username: user.username, email: user.email, token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Error del servidor" });
-  }
-});
-
+  );
 
   UsuarioRouter.post('/logout', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
