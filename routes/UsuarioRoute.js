@@ -27,7 +27,7 @@ UsuarioRouter.post('/registro', async (req, res) => {
   try {
       const usuario = new ModelUsuario(req.body);
       // Encriptamos la contraseña
-      usuario.password = await bcrypt.hash(password, 10);
+     
       const usuarioguardado = await usuario.save();
 
       // Generamos el token JWT
