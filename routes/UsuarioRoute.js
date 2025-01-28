@@ -14,29 +14,36 @@ const UsuarioRouter = express.Router()
 
 
 UsuarioRouter.post('/registro', async (req, res) => {
-    const { email, username } = req.body;
-    if (!username) {
+  const { email, username } = req.body;
+  if (!username) {
       return res.status(400).json({ msg: 'El username es obligatorio' });
   }
-    const existeUsuario = await ModelUsuario.findOne({ email });
-    if (existeUsuario) {
-        const error = new Error('Usuario ya registrado');
-        return res.status(400).json({ msg: error.message });
-    }
 
-    try {
+  const existeUsuario = await ModelUsuario.findOne({ email });
+  if (existeUsuario) {
+      const error = new Error('Usuario ya registrado');
+      return res.status(400).json({ msg: error.message });
+  }
 
-        const usuario = new ModelUsuario(req.body);
-        const usuarioguardado = await usuario.save();
-        const token = generarJWT(usuarioguardado._id);
-        res.json({
-            usuario: usuarioguardado,
-            token,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ msg: 'Error del servidor' });
-    }
+  try {
+      const usuario = new ModelUsuario(req.body);
+      const usuarioguardado = await usuario.save();
+
+      
+      const token = generarJWT(usuarioguardado._id);
+
+      usuarioguardado.token = token;
+      await usuarioguardado.save();
+
+  
+      res.json({
+          usuario: usuarioguardado,
+          token,
+      });
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ msg: 'Error del servidor' });
+  }
 });
 
 UsuarioRouter.get('/perfil', passport.authenticate("jwt", { session: false }), async (req, res) => {
