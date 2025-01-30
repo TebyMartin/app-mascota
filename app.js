@@ -1,11 +1,11 @@
 import express from 'express'
 import dbconnect from './config/db.js';
-import Clienterouter from './routes/ClienteRoute.js';
 import MascostaRouter from './routes/MascotaRoute.js';
 import UsuarioRouter from './routes/UsuarioRoute.js';
 import dotenv from 'dotenv';
 import { authConfig } from './middleware/passportConfig.js';
 import cors from "cors"
+import ClienteRouter from './routes/ClienteRoute.js';
 
 
 dotenv.config();
@@ -16,7 +16,7 @@ app.use(cors())
  // Ruta de prueba
 
 authConfig()
-app.use("/api",Clienterouter)
+app.use("/api",ClienteRouter)
 app.use("/api",MascostaRouter)
 app.use("/api",UsuarioRouter)
 

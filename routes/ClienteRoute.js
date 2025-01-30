@@ -1,64 +1,75 @@
-import express from 'express'
-import ModelCliente from '../model/Cliente.js'
-import passport from 'passport'
+import express from 'express';
+import ModelCliente from '../model/Cliente.js';
+import passport from 'passport';
 
-const Clienterouter = express()
+const ClienteRouter = express();
 
-Clienterouter.post('/cliente', passport.authenticate("jwt", { session: false }), async (req, res) => {
-    const body = req.body
+ClienteRouter.post('/cliente', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
-        const nuevoCliente= await ModelCliente.create(body)
-        res.status(201).send(nuevoCliente)
+        const nuevoCliente = await ModelCliente.create({
+            ...req.body,
+            usuario: req.user.id  
+        });
+
+        res.status(201).json(nuevoCliente);
     } catch (error) {
-       res.status(400).send(error) 
+        res.status(400).json({ mensaje: 'Error al crear el cliente', error: error.message });
     }
-})
+});
 
-Clienterouter.get('/cliente', passport.authenticate("jwt", { session: false }), async (req, res) => {
+
+ClienteRouter.get('/cliente', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
-        const cliente = await ModelCliente.find()
-        res.status(200).send(cliente)
+        const clientes = await ModelCliente.find({ usuario: req.user.id });  
+        res.status(200).json(clientes);
     } catch (error) {
-       res.status(500).send({mensaje: 'Error al obtener los clientes', error}) 
+       res.status(500).json({ mensaje: 'Error al obtener los clientes', error: error.message });
     }
-})
+});
 
-Clienterouter.get('/cliente/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
+
+ClienteRouter.get('/cliente/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
-        const cliente = await ModelCliente.findById(req.params.id)
+        const cliente = await ModelCliente.findOne({ _id: req.params.id, usuario: req.user.id });
         if (!cliente) {
-            return res.status(404).send({mensaje:"cliente no encontrado"})
+            return res.status(404).json({ mensaje: "Cliente no encontrado" });
         }
-        res.status(200).send(cliente)
+        res.status(200).json(cliente);
     } catch (error) {
-       res.status(500).send({mensaje: 'Error al obtener los cliente', error}) 
+       res.status(500).json({ mensaje: 'Error al obtener el cliente', error: error.message });
     }
-})
+});
 
-  
-Clienterouter.put('/cliente/:id',passport.authenticate("jwt", { session: false }),async(req,res)=> {
+
+ClienteRouter.put('/cliente/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
-       const clienteActualizado = await ModelCliente.findByIdAndUpdate(req.params.id, req.body,{new:true, runValidators:true}) 
+        const clienteActualizado = await ModelCliente.findOneAndUpdate(
+            { _id: req.params.id, usuario: req.user.id }, 
+            req.body, 
+            { new: true, runValidators: true }
+        ); 
+
         if (!clienteActualizado) {
-            return res.status(404).send({mensaje:"cliente no encontrado"})
+            return res.status(404).json({ mensaje: "Cliente no encontrado" });
         }
-        res.status(200).send({mensaje:"cliente actualizado"})
-    } catch (error) {
-        res.status(400).send({mensaje:"error al actualizar",error})
-    }
-})
 
-Clienterouter.delete("/cliente/:id", passport.authenticate("jwt", { session: false }), async (req,res) => {
+        res.status(200).json({ mensaje: "Cliente actualizado", cliente: clienteActualizado });
+    } catch (error) {
+        res.status(400).json({ mensaje: "Error al actualizar el cliente", error: error.message });
+    }
+});
+
+
+ClienteRouter.delete("/cliente/:id", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
-        const clienteEliminado = await ModelCliente.findByIdAndDelete(req.params.id)
+        const clienteEliminado = await ModelCliente.findOneAndDelete({ _id: req.params.id, usuario: req.user.id });
         if (!clienteEliminado) {
-            return res.status(404).send({mensaje:"cliente no encontrado"})
+            return res.status(404).json({ mensaje: "Cliente no encontrado" });
         }
-        res.status(200).send({mensaje:"cliente Eliminado"})
+        res.status(200).json({ mensaje: "Cliente eliminado" });
     } catch (error) {
-        res.status(400).send({mensaje:"error al eliminar",error})
+        res.status(400).json({ mensaje: "Error al eliminar el cliente", error: error.message });
     }
-})
+});
 
-
-export default Clienterouter 
+export default ClienteRouter;

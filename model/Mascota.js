@@ -8,6 +8,11 @@ const mascotaSchema = new mongoose.Schema({
     raza: { type: String },
     edad: { type: Number },
     sintomas: { type: String },
+    usuario: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "usuario", 
+        required: true 
+    } ,
     cliente: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'cliente'
