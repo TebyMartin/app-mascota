@@ -44,9 +44,7 @@ ClienteRouter.get('/cliente/:id', passport.authenticate("jwt", { session: false 
 ClienteRouter.put('/cliente/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const clienteActualizado = await ModelCliente.findOneAndUpdate(
-            { _id: req.params.id, usuario: req.user.id }, 
-            req.body, 
-            { new: true, runValidators: true }
+            req.params.id, req.body,{new:true, runValidators:true}
         ); 
 
         if (!clienteActualizado) {
@@ -62,7 +60,7 @@ ClienteRouter.put('/cliente/:id', passport.authenticate("jwt", { session: false 
 
 ClienteRouter.delete("/cliente/:id", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
-        const clienteEliminado = await ModelCliente.findOneAndDelete({ _id: req.params.id, usuario: req.user.id });
+        const clienteEliminado = await ModelCliente.findOneAndDelete(req.params.id);
         if (!clienteEliminado) {
             return res.status(404).json({ mensaje: "Cliente no encontrado" });
         }
