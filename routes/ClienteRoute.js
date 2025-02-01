@@ -41,11 +41,22 @@ ClienteRouter.get('/cliente/:id', passport.authenticate("jwt", { session: false 
 });
 
 
+const mongoose = require('mongoose');
+
 ClienteRouter.put('/cliente/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
+        const { id } = req.params;
+
+      
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ mensaje: "ID inválido" });
+        }
+
         const clienteActualizado = await ModelCliente.findOneAndUpdate(
-            req.params.id, req.body,{new:true, runValidators:true}
-        ); 
+            { _id: new mongoose.Types.ObjectId(id) }, 
+            req.body,
+            { new: true, runValidators: true }
+        );
 
         if (!clienteActualizado) {
             return res.status(404).json({ mensaje: "Cliente no encontrado" });
@@ -53,7 +64,7 @@ ClienteRouter.put('/cliente/:id', passport.authenticate("jwt", { session: false 
 
         res.status(200).json({ mensaje: "Cliente actualizado", cliente: clienteActualizado });
     } catch (error) {
-        res.status(400).json({ mensaje: "Error al actualizar el cliente", error: error.message });
+        res.status(500).json({ mensaje: "Error al actualizar el cliente", error: error.message });
     }
 });
 
