@@ -42,8 +42,6 @@ ClienteRouter.get('/cliente/:id', passport.authenticate("jwt", { session: false 
 
 
 
-const mongoose = require('mongoose');
-
 ClienteRouter.put('/cliente/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const { id } = req.params;
