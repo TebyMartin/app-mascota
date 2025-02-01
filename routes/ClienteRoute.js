@@ -1,6 +1,7 @@
 import express from 'express';
 import ModelCliente from '../model/Cliente.js';
 import passport from 'passport';
+import mongoose from 'mongoose';
 
 const ClienteRouter = express();
 
