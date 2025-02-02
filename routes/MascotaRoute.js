@@ -2,6 +2,7 @@ import express from 'express'
 import ModelMascota from '../model/Mascota.js'
 import passport from 'passport';
 import mongoose from 'mongoose';
+import ModelCliente from '../model/Cliente.js';
 
 
 const MascostaRouter = express()
@@ -87,17 +88,26 @@ MascostaRouter.delete("/mascota/:id", passport.authenticate("jwt", { session: fa
         res.status(400).send({ mensaje: "Error al eliminar", error });
     }
 })
+import mongoose from 'mongoose';
+import ModelMascota from './models/mascota';  // Asegúrate de importar correctamente tu modelo
+import ModelCliente from './models/cliente';  // Asegúrate de importar el modelo de cliente
+
 MascostaRouter.get('/mascota/busqueda', passport.authenticate("jwt", { session: false }), async (req, res) => {
-    const { cliente } = req.query; 
+    const { cliente } = req.query;
+    
     try {
         if (!cliente) {
             return res.status(400).json({ mensaje: 'El parámetro cliente es requerido' });
         }
-
-      
-        const clienteId = mongoose.Types.ObjectId(cliente);
-
-   
+        let clienteId = cliente;
+        if (!mongoose.Types.ObjectId.isValid(cliente)) {
+            
+            const clienteEncontrado = await ModelCliente.findOne({ nombre: cliente });
+            if (!clienteEncontrado) {
+                return res.status(404).json({ mensaje: 'Cliente no encontrado' });
+            }
+            clienteId = clienteEncontrado._id;
+        }
         const mascotas = await ModelMascota.find({ cliente: clienteId }).populate('cliente');
 
         if (!mascotas.length) {
