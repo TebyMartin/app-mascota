@@ -96,7 +96,7 @@ MascostaRouter.get('/mascota/busqueda', passport.authenticate("jwt", { session: 
         }
 
        
-        const mascotas = await ModelMascota.find({ cliente, usuario: req.user.id }).populate('cliente');
+        const mascotas = await ModelMascota.find({ cliente }).populate('cliente');
 
         if (!mascotas.length) {
             return res.status(404).json({ mensaje: 'No se encontraron mascotas asociadas al cliente especificado' });
