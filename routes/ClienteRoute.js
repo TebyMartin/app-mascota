@@ -2,6 +2,7 @@ import express from 'express';
 import ModelCliente from '../model/Cliente.js';
 import passport from 'passport';
 import mongoose from 'mongoose';
+import ModelMascota from '../model/Mascota.js';
 
 const ClienteRouter = express();
 
@@ -72,6 +73,7 @@ ClienteRouter.put('/cliente/:id', passport.authenticate("jwt", { session: false 
 
 ClienteRouter.delete("/cliente/:id", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
+        await ModelMascota.deleteMany({ cliente: req.params.id });
         const clienteEliminado = await ModelCliente.findOneAndDelete(req.params.id);
         if (!clienteEliminado) {
             return res.status(404).json({ mensaje: "Cliente no encontrado" });
