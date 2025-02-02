@@ -95,8 +95,13 @@ MascostaRouter.get('/mascota/busqueda', passport.authenticate("jwt", { session: 
             return res.status(400).json({ mensaje: 'El parámetro cliente es requerido' });
         }
 
+        const clienteEncontrado = await ClienteModel.findOne({ nombre: cliente });
+
+        if (!clienteEncontrado) {
+            return res.status(404).json({ mensaje: 'Cliente no encontrado' });
+        }
        
-        const mascotas = await ModelMascota.find({ cliente, usuario: req.user.id }).populate('cliente');
+        const mascotas = await ModelMascota.find({ cliente: clienteEncontrado._id, usuario: req.user.id }).populate('cliente');
 
         if (!mascotas.length) {
             return res.status(404).json({ mensaje: 'No se encontraron mascotas asociadas al cliente especificado' });
