@@ -1,6 +1,7 @@
 import express from 'express'
 import ModelMascota from '../model/Mascota.js'
 import passport from 'passport';
+import mongoose from 'mongoose';
 
 
 const MascostaRouter = express()
