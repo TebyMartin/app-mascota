@@ -2,6 +2,7 @@ import express from 'express'
 import ModelMascota from '../model/Mascota.js'
 import passport from 'passport';
 import mongoose from 'mongoose';
+import ModelCliente from '../model/Cliente.js';
 
 
 const MascostaRouter = express()
@@ -95,7 +96,7 @@ MascostaRouter.get('/mascota/busqueda', passport.authenticate("jwt", { session: 
             return res.status(400).json({ mensaje: 'El parámetro cliente es requerido' });
         }
 
-        const clienteEncontrado = await ClienteModel.findOne({ nombre: cliente });
+        const clienteEncontrado = await ModelCliente.findOne({ nombre: cliente });
 
         if (!clienteEncontrado) {
             return res.status(404).json({ mensaje: 'Cliente no encontrado' });
