@@ -43,6 +43,31 @@ MascostaRouter.get('/mascota/:id', passport.authenticate("jwt", { session: false
     } catch (error) {
        res.status(500).send({ mensaje: 'Error al obtener la mascota', error });
     }
+})
+
+MascostaRouter.put('/mascota/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ mensaje: "ID inválido" });
+        }
+
+        const objectId = new mongoose.Types.ObjectId(id)
+
+        const mascotaActualizada = await ModelMascota.findOneAndUpdate(
+            { _id: objectId }, 
+            req.body,
+            { new: true, runValidators: true }
+        );
+
+        if (!mascotaActualizada) {
+            return res.status(404).json({ mensaje: "Mascota no encontrado" });
+        }
+
+        res.status(200).json({ mensaje: "Mascota actualizado", mascota: clienteActualizado });
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al actualizar el mascota", error: error.message });
+    }
 });
 
 MascostaRouter.delete("/mascota/:id", passport.authenticate("jwt", { session: false }), async (req, res) => {
@@ -60,7 +85,7 @@ MascostaRouter.delete("/mascota/:id", passport.authenticate("jwt", { session: fa
     } catch (error) {
         res.status(400).send({ mensaje: "Error al eliminar", error });
     }
-});
+})
 
 MascostaRouter.get('/mascota/busqueda', passport.authenticate("jwt", { session: false }), async (req, res) => {
     const { cliente } = req.query;
