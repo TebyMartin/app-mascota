@@ -65,7 +65,7 @@ MascostaRouter.put('/mascota/:id', passport.authenticate("jwt", { session: false
             return res.status(404).json({ mensaje: "Mascota no encontrado" });
         }
 
-        res.status(200).json({ mensaje: "Mascota actualizado", mascota: clienteActualizado });
+        res.status(200).json({ mensaje: "Mascota actualizado", mascota: mascotaActualizada });
     } catch (error) {
         res.status(500).json({ mensaje: "Error al actualizar el mascota", error: error.message });
     }
