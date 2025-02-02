@@ -87,16 +87,18 @@ MascostaRouter.delete("/mascota/:id", passport.authenticate("jwt", { session: fa
         res.status(400).send({ mensaje: "Error al eliminar", error });
     }
 })
-
 MascostaRouter.get('/mascota/busqueda', passport.authenticate("jwt", { session: false }), async (req, res) => {
-    const { cliente } = req.query;
+    const { cliente } = req.query; 
     try {
         if (!cliente) {
             return res.status(400).json({ mensaje: 'El parámetro cliente es requerido' });
         }
 
-       
-        const mascotas = await ModelMascota.find({ cliente }).populate('cliente');
+      
+        const clienteId = mongoose.Types.ObjectId(cliente);
+
+   
+        const mascotas = await ModelMascota.find({ cliente: clienteId }).populate('cliente');
 
         if (!mascotas.length) {
             return res.status(404).json({ mensaje: 'No se encontraron mascotas asociadas al cliente especificado' });
@@ -107,6 +109,7 @@ MascostaRouter.get('/mascota/busqueda', passport.authenticate("jwt", { session: 
         res.status(500).json({ mensaje: 'No se pudo obtener las mascotas', error: error.message });
     }
 });
+
 
 
 
